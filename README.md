@@ -62,11 +62,162 @@ $ rabbitmqadmin get queue='hello'
 
 
 ---
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/baac94c3-f87e-4d1d-a2f1-386f277f0855)
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/b0cef132-a536-4982-8648-6f9c853dd81f)
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/9bff3c8f-9b7b-4dc3-8484-a803a38b1194)
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/26a6e3a7-a490-43b6-bbe0-a243fb56cbcc)
 
+Ноды поднимались в Docker, порты проброшены только у первой ноды. При отключении первой потеряется и вторая.
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/3bda6ae9-3696-4056-83a6-fbe2900cbdd3)
+
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/09831e58-02c9-43a9-b87a-66c33f9cc15e)
+![image](https://github.com/Nightnek/HW_11_04/assets/127677631/59eeb1bf-4046-4724-a89f-b4c4faca5b99)
+
+
+````
+# rabbitmqctl cluster_status
+Cluster status of node rabbit@rabbit1 ...
+Basics
+
+Cluster name: rabbit@rabbit1
+Total CPU cores available cluster-wide: 16
+
+Disk Nodes
+
+rabbit@rabbit1
+rabbit@rabbit2
+
+Running Nodes
+
+rabbit@rabbit1
+rabbit@rabbit2
+
+Versions
+
+rabbit@rabbit1: RabbitMQ 3.12.14 on Erlang 25.3.2.12
+rabbit@rabbit2: RabbitMQ 3.12.14 on Erlang 25.3.2.12
+
+CPU Cores
+
+Node: rabbit@rabbit1, available CPU cores: 8
+Node: rabbit@rabbit2, available CPU cores: 8
+
+Maintenance status
+
+Node: rabbit@rabbit1, status: not under maintenance
+Node: rabbit@rabbit2, status: not under maintenance
+
+Alarms
+
+(none)
+
+Network Partitions
+
+(none)
+
+Listeners
+
+Node: rabbit@rabbit1, interface: [::], port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rabbit1, interface: [::], port: 15692, protocol: http/prometheus, purpose: Prometheus exporter API over HTTP
+Node: rabbit@rabbit1, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rabbit1, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@rabbit2, interface: [::], port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rabbit2, interface: [::], port: 15692, protocol: http/prometheus, purpose: Prometheus exporter API over HTTP
+Node: rabbit@rabbit2, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rabbit2, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+
+Feature flags
+
+Flag: classic_mirrored_queue_version, state: enabled
+Flag: classic_queue_type_delivery_support, state: enabled
+Flag: direct_exchange_routing_v2, state: enabled
+Flag: drop_unroutable_metric, state: enabled
+Flag: empty_basic_get_metric, state: enabled
+Flag: feature_flags_v2, state: enabled
+Flag: implicit_default_bindings, state: enabled
+Flag: listener_records_in_ets, state: enabled
+Flag: maintenance_mode_status, state: enabled
+Flag: quorum_queue, state: enabled
+Flag: restart_streams, state: enabled
+Flag: stream_queue, state: enabled
+Flag: stream_sac_coordinator_unblock_group, state: enabled
+Flag: stream_single_active_consumer, state: enabled
+Flag: tracking_records_in_ets, state: enabled
+Flag: user_limits, state: enabled
+Flag: virtual_host_metadata, state: enabled
+#
+
+# rabbitmqctl cluster_status
+Cluster status of node rabbit@rabbit2 ...
+Basics
+
+Cluster name: rabbit@rabbit2
+Total CPU cores available cluster-wide: 16
+
+Disk Nodes
+
+rabbit@rabbit1
+rabbit@rabbit2
+
+Running Nodes
+
+rabbit@rabbit1
+rabbit@rabbit2
+
+Versions
+
+rabbit@rabbit1: RabbitMQ 3.12.14 on Erlang 25.3.2.12
+rabbit@rabbit2: RabbitMQ 3.12.14 on Erlang 25.3.2.12
+
+CPU Cores
+
+Node: rabbit@rabbit1, available CPU cores: 8
+Node: rabbit@rabbit2, available CPU cores: 8
+
+Maintenance status
+
+Node: rabbit@rabbit1, status: not under maintenance
+Node: rabbit@rabbit2, status: not under maintenance
+
+Alarms
+
+(none)
+
+Network Partitions
+
+(none)
+
+Listeners
+
+Node: rabbit@rabbit1, interface: [::], port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rabbit1, interface: [::], port: 15692, protocol: http/prometheus, purpose: Prometheus exporter API over HTTP
+Node: rabbit@rabbit1, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rabbit1, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+Node: rabbit@rabbit2, interface: [::], port: 15672, protocol: http, purpose: HTTP API
+Node: rabbit@rabbit2, interface: [::], port: 15692, protocol: http/prometheus, purpose: Prometheus exporter API over HTTP
+Node: rabbit@rabbit2, interface: [::], port: 25672, protocol: clustering, purpose: inter-node and CLI tool communication
+Node: rabbit@rabbit2, interface: [::], port: 5672, protocol: amqp, purpose: AMQP 0-9-1 and AMQP 1.0
+
+Feature flags
+
+Flag: classic_mirrored_queue_version, state: enabled
+Flag: classic_queue_type_delivery_support, state: enabled
+Flag: direct_exchange_routing_v2, state: enabled
+Flag: drop_unroutable_metric, state: enabled
+Flag: empty_basic_get_metric, state: enabled
+Flag: feature_flags_v2, state: enabled
+Flag: implicit_default_bindings, state: enabled
+Flag: listener_records_in_ets, state: enabled
+Flag: maintenance_mode_status, state: enabled
+Flag: quorum_queue, state: enabled
+Flag: restart_streams, state: enabled
+Flag: stream_queue, state: enabled
+Flag: stream_sac_coordinator_unblock_group, state: enabled
+Flag: stream_single_active_consumer, state: enabled
+Flag: tracking_records_in_ets, state: enabled
+Flag: user_limits, state: enabled
+Flag: virtual_host_metadata, state: enabled
+# 
+````
 ---
 
-
-## * Задание 4. Ansible playbook
-Напишите плейбук, который будет производить установку RabbitMQ на любое количество нод и объединять их в кластер. При этом будет автоматически создавать политику ha-all.
-
-Готовый плейбук разместите в своём репозитории.
